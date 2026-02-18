@@ -22,6 +22,14 @@
 #stats .card {
 	min-height: 80px;
 }
+#stats .stat-card {
+	transition: all 0.3s ease;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+#stats .stat-card:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
 .badge-priority-high { background:#dc3545; color:#fff; }
 .badge-priority-medium { background:#ffc107; color:#212529; }
 .badge-priority-low { background:#198754; color:#fff; }

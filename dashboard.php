@@ -4,6 +4,11 @@ if(!isset($_SESSION['user_id'])){
     header('Location: index.php');
     exit;
 }
+// Redirect admins to admin panel
+if($_SESSION['role'] === 'admin'){
+    header('Location: admin.php');
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,6 +31,9 @@ if(!isset($_SESSION['user_id'])){
                 <input id="searchInput" class="form-control form-control-sm d-none d-md-block" placeholder="Search tasks...">
                 <?php $userName = htmlspecialchars($_SESSION['name'] ?? ''); $userEmail = htmlspecialchars($_SESSION['email'] ?? ''); $userId = $_SESSION['user_id'] ?? null; $userRole = htmlspecialchars($_SESSION['role'] ?? ''); ?>
                 <span id="greeting" class="text-white">Hello, <?php echo $userName ?: 'User'; ?></span>
+                <?php if($userRole === 'admin'): ?>
+                <a href="admin.php" class="btn btn-sm btn-warning"><i class="fa fa-shield me-1"></i>Admin</a>
+                <?php endif; ?>
                 <a href="#" id="loginBtn" class="btn btn-sm btn-outline-light ms-2 d-none">Login</a>
                 <a href="#" id="registerBtn" class="btn btn-sm btn-outline-light ms-2 d-none">Register</a>
                 <a href="auth/logout.php" id="logoutBtn" class="btn btn-sm btn-outline-light ms-2">Logout</a>
@@ -38,7 +46,7 @@ if(!isset($_SESSION['user_id'])){
             <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
                 <div class="position-sticky pt-3">
                     <ul class="nav flex-column">
-                        <li class="nav-item"><a class="nav-link active text-white" href="#"><i class="fa fa-home me-2"></i>Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link active text-white" href="#" id="dashboardLink"><i class="fa fa-home me-2"></i>Dashboard</a></li>
                         <li class="nav-item mt-3 px-3 text-muted">Filters</li>
                         <li class="nav-item"><a class="nav-link text-white filter" href="#" data-status="all"><i class="fa fa-list me-2"></i>All Tasks</a></li>
                         <li class="nav-item"><a class="nav-link text-white filter" href="#" data-status="pending"><i class="fa fa-clock me-2"></i>Pending</a></li>
@@ -54,7 +62,7 @@ if(!isset($_SESSION['user_id'])){
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h2>Dashboard</h2>
+                    <h2 id="pageHeading">Dashboard</h2>
                     <div>
                         <button id="addTaskBtn" class="btn btn-primary"><i class="fa fa-plus me-2"></i>Add Task</button>
                     </div>
