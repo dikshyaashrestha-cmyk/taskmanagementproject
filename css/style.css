@@ -1,0 +1,32 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: arial, sans-serif;
+}
+.topbar {
+	background:#2b3a67;
+	height:60px;
+	color:#fff;
+}
+.sidebar {
+	min-height: calc(100vh - 70px);
+	padding-top: 1rem;
+}
+.sidebar .nav-link {
+	color: rgba(255,255,255,0.9);
+}
+.sidebar .nav-link.active {
+	background: rgba(255,255,255,0.08);
+}
+#stats .card {
+	min-height: 80px;
+}
+.badge-priority-high { background:#dc3545; color:#fff; }
+.badge-priority-medium { background:#ffc107; color:#212529; }
+.badge-priority-low { background:#198754; color:#fff; }
+.task-overdue { background:#fff3f3; }
+.table td.small { white-space:nowrap; }
+@media (max-width:767px){
+  #sidebar{display:none}
+}
